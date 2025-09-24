@@ -100,10 +100,34 @@
     line-height: 1.4;
     min-height: 50px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: var(--muted);
+  }
+
+  /* Mines board */
+  .mines-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .cell {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    background: #121a2b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    transition: background .3s ease;
+  }
+  .cell.mine {
+    background: #ff4d4d;
   }
 
   .cta{
@@ -160,6 +184,7 @@
       <!-- Блок сигналов -->
       <div id="signalsBox" class="message-box" style="display:none;">
         <div id="signalText">📡 Waiting for signals...</div>
+        <div id="minesBoard" class="mines-board" style="display:none;"></div>
       </div>
  
       <a class="cta" id="depositLink" href="https://reffpa.com/L?tag=d_4755587m_2804c_&site=4755587&ad=2804&r=registration" target="_blank">💳 Make a deposit</a>
@@ -206,8 +231,8 @@
     const progress = document.getElementById('progress');
     const signalsBox = document.getElementById('signalsBox');
     const signalText = document.getElementById('signalText');
+    const minesBoard = document.getElementById('minesBoard');
 
-    // Генерация случайного числа от 0.01 до 10
     function randomMultiplier() {
       return (Math.random() * (10 - 0.01) + 0.01).toFixed(2);
     }
@@ -218,12 +243,40 @@
       return `🎯 [${now}] ${game} → ${multiplier}`;
     }
 
+    function generateMinesBoard() {
+      minesBoard.innerHTML = '';
+      minesBoard.style.display = 'grid';
+
+      const cells = Array.from({length: 25}, (_, i) => i);
+      const mines = [];
+      while (mines.length < 5) {
+        const idx = Math.floor(Math.random() * cells.length);
+        mines.push(cells.splice(idx, 1)[0]);
+      }
+
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'cell';
+        if (mines.includes(i)) {
+          cell.classList.add('mine');
+          cell.textContent = '💣';
+        }
+        minesBoard.appendChild(cell);
+      }
+    }
+
     function startSignals() {
       const selected = document.querySelector('input[name="game"]:checked');
       const game = selected ? selected.value : "Crash";
 
-      signalsBox.style.display = 'block';
+      signalsBox.style.display = 'flex';
       signalText.textContent = generateSignal(game);
+
+      if (game === "Mines") {
+        generateMinesBoard();
+      } else {
+        minesBoard.style.display = 'none';
+      }
     }
 
     start.addEventListener('click', ()=>{
