@@ -240,19 +240,20 @@
   const now = new Date().toLocaleTimeString();
 
   if (game === "Mines") {
-    return `🎯 [${now}] ${game} → <span style="color:#9aa4b2">Safe moves generated</span>`;
+    return `🎯 [${now}] ${game} → Safe moves generated`;
   }
 
   if (game === "Penalty") {
     const directions = ["Top Left", "Top Right", "Center", "Bottom Left", "Bottom Right"];
     const dir = directions[Math.floor(Math.random() * directions.length)];
-    return `🎯 [${now}] ${game} → <span style="color:#ffd54f; font-weight:700; font-size:18px">${dir}</span>`;
+    return `🎯 [${now}] ${game} → Shot: ${dir}`;
   }
 
-  // Aviator
+  // Aviator по умолчанию
   const multiplier = "x" + randomMultiplier();
-  return `🎯 [${now}] ${game} → <span style="color:#0cb86a; font-weight:700; font-size:18px">${multiplier}</span>`;
+  return `🎯 [${now}] ${game} → ${multiplier}`;
 }
+
 
 
 
