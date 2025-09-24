@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Max "Lucky" Otien</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
   :root{
-    --orange:#ff7a00; 
-    --green:#0cb86a; 
-    --blue:#1b57f2; 
-    --bg:#0b0f14;
-    --card:#121826;
+    --orange:#ff7a00;
+    --green:#0cb86a;
+    --blue:#1b57f2;
     --muted:#9aa4b2;
   }
   *{box-sizing:border-box}
@@ -24,143 +22,45 @@
     display:flex; align-items:center; justify-content:center; padding:20px;
   }
   .wrap{ width:min(480px, 100%); }
- 
   .card{
     background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
     backdrop-filter: blur(6px);
     border:1px solid rgba(255,255,255,.08);
     border-radius:24px; padding:26px 22px; box-shadow:0 20px 60px rgba(0,0,0,.45);
-    animation: pop .6s ease;
   }
-  @keyframes pop{ from{transform:translateY(10px); opacity:0} to{transform:none; opacity:1} }
- 
-  .flag{width:64px; height:auto; display:block; margin:0 auto 8px; filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));}
-  .title{ text-align:center; font-weight:800; letter-spacing:.2px; margin:2px 0 8px; font-size:28px; }
+  .flag{width:64px; display:block; margin:0 auto 8px}
+  .title{ text-align:center; font-weight:800; margin:2px 0 8px; font-size:28px; }
   .subtitle{ text-align:center; color:var(--muted); font-size:14px; margin-bottom:18px }
- 
   .badges{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin:0 0 14px}
-  .badge{font-size:11px; color:#d8dee9; background:#1a2336; border:1px solid rgba(255,255,255,.08); padding:6px 10px; border-radius:999px}
- 
+  .badge{font-size:11px; color:#d8dee9; background:#1a2336; padding:6px 10px; border-radius:999px}
   label.block{display:block; font-weight:600; margin-top:14px; margin-bottom:8px; text-align:left}
-  .games{
-    display:flex;
-    gap:10px;
-    flex-direction: row;
-  }
-  .game-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
-  }
-  .game{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    padding:10px 12px;
-    border-radius:12px;
-    cursor:pointer;
-    background:#121a2b;
-    border:1px solid rgba(255,255,255,.08);
-    transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-  }
-  .game:hover{ transform:translateY(-1px); border-color:rgba(255,255,255,.16); box-shadow:0 8px 20px rgba(0,0,0,.25)}
+  .games{display:flex; gap:10px; flex-direction:row;}
+  .game-column{display:flex; flex-direction:column; gap:10px; flex:1;}
+  .game{display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; cursor:pointer; background:#121a2b; border:1px solid rgba(255,255,255,.08);}
   .game input{ accent-color:var(--green) }
-  .game .icon{font-size:18px}
- 
-  .input{
-    width:100%; background:#121a2b; color:#e9edf3; border:1px solid rgba(255,255,255,.1); border-radius:12px;
-    padding:12px 14px; outline:none; transition:border-color .15s ease, box-shadow .15s ease;
-  }
-  .input:focus{ border-color:var(--blue); box-shadow:0 0 0 4px rgba(27,87,242,.18) }
+  .input{ width:100%; background:#121a2b; color:#e9edf3; border:1px solid rgba(255,255,255,.1); border-radius:12px; padding:12px 14px; outline:none; }
   .hint{font-size:12px; color:var(--muted); margin-top:6px; text-align:left}
-  .warn{ display:none; color:#ff6767; font-size:13px; margin-top:8px; animation: flash .5s ease; text-align:left }
-  @keyframes flash{ from{opacity:0; transform:translateY(-2px)} to{opacity:1; transform:none} }
- 
-  .btn{
-    margin-top:16px; width:100%; border:0; border-radius:14px; padding:14px 16px; font-weight:800; font-size:16px;
-    color:#071018; background:linear-gradient(90deg, var(--orange), var(--green)); cursor:pointer;
-    box-shadow:0 10px 30px rgba(255,122,0,.25), 0 10px 30px rgba(12,184,106,.18);
-    transition: transform .12s ease, filter .2s ease, opacity .2s ease;
-  }
-  .btn:disabled{opacity:.5; cursor:not-allowed; filter:grayscale(.3)}
-  .btn:not(:disabled):active{ transform:scale(.98) }
- 
+  .warn{ display:none; color:#ff6767; font-size:13px; margin-top:8px; text-align:left }
+  .btn{ margin-top:16px; width:100%; border:0; border-radius:14px; padding:14px 16px; font-weight:800; font-size:16px; color:#071018; background:linear-gradient(90deg, var(--orange), var(--green));}
+  .btn:disabled{opacity:.5; cursor:not-allowed}
   .progress{ display:none; height:10px; background:#101625; border-radius:999px; overflow:hidden; margin-top:14px; border:1px solid rgba(255,255,255,.08) }
   .bar{ height:100%; width:0; background:linear-gradient(90deg, var(--orange), var(--green)); animation: fill 2.4s linear forwards }
   @keyframes fill{ from{width:0} to{width:100%} }
-
-  .message-box{
-    margin-top: 16px;
-    padding: 14px;
-    border-radius: 12px;
-    background: #1a2336;
-    border: 1px solid rgba(255,255,255,.08);
-    font-size: 14px;
-    line-height: 1.4;
-    min-height: 50px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: var(--muted);
-  }
-
-    #signalValue {
-  margin-top: 8px;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-}
-
-#signalValue.aviator {
-  color: #0cb86a;
-}
-
-#signalValue.penalty {
-  color: #ffd54f;
-}
-
+  .message-box{ margin-top:16px; padding:14px; border-radius:12px; background:#1a2336; border:1px solid rgba(255,255,255,.08); font-size:14px; min-height:60px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--muted); }
+  /* SIGNAL UI */
+  #signalText{ font-size:14px; color:var(--muted); }
+  #signalValue{ margin-top:8px; min-height:28px; font-weight:800; text-align:center; font-size:18px; }
+  #signalValue.aviator{ color:var(--green); font-size:20px; }
+  #signalValue.penalty{ color:#ffd54f; font-size:20px; }
+  #signalValue.mines{ color:var(--muted); font-size:14px; font-weight:600; }
   /* Mines board */
-  .mines-board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
-    margin-top: 12px;
-  }
-  .cell {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-    background: #121a2b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: #fff;
-    transition: background .3s ease;
-  }
-  .cell.mine {
-    background: #ff4d4d;
-  }
-
-  .cta{
-    margin-top:18px; display:block; text-align:center; text-decoration:none; font-weight:700; color:#fff;
-    background: linear-gradient(90deg, #1b57f2, #06b6d4);
-    padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08);
-    box-shadow:0 12px 30px rgba(27,87,242,.25);
-  }
- 
+  .mines-board{ display:grid; grid-template-columns:repeat(5,1fr); gap:6px; margin-top:12px; }
+  .cell{ width:40px; height:40px; border-radius:6px; background:#121a2b; display:flex; align-items:center; justify-content:center; font-size:18px; color:#fff; transition:background .2s }
+  .cell.mine{ background:#ff4d4d }
+  .cta{ margin-top:18px; display:block; text-align:center; text-decoration:none; font-weight:700; color:#fff; background: linear-gradient(90deg, #1b57f2, #06b6d4); padding:12px 14px; border-radius:12px; }
   .meta{display:flex; justify-content:space-between; align-items:center; margin-top:14px; color:var(--muted); font-size:13px}
- 
   .footer{ text-align:center; color:#a6b0be; font-size:12px; margin-top:14px }
-  .footer strong{color:#fff}
- 
-  @media (max-width:420px){
-    .title{font-size:24px}
-    .games{flex-direction: column;}
-  }
+  @media (max-width:420px){ .games{flex-direction:column;} .title{font-size:24px} }
   </style>
 </head>
 <body>
@@ -169,130 +69,95 @@
       <img src="https://flagcdn.com/w160/lr.png" class="flag" alt="Liberia"/>
       <div class="title">Max "Lucky" Otien</div>
       <div class="subtitle">Fast signals • Made in Liberia • LBR</div>
- 
+
       <div class="badges">
         <div class="badge">🔒 Safe</div>
         <div class="badge">✅ Guarantee</div>
         <div class="badge">✨ Based on AI</div>
       </div>
- 
+
       <label class="block">🎮 Game Selection</label>
       <div class="games">
         <div class="game-column">
-          <label class="game"><input type="radio" name="game" value="Aviator"> <span class="icon">✈️</span> Aviator</label>
+          <label class="game"><input type="radio" name="game" value="Aviator" checked> <span class="icon">✈️</span> Aviator</label>
           <label class="game"><input type="radio" name="game" value="Penalty"> <span class="icon">⚽️</span> Penalty</label>
         </div>
         <div class="game-column">
           <label class="game"><input type="radio" name="game" value="Mines"> <span class="icon">💎</span> Mines</label>
         </div>
       </div>
- 
+
       <label class="block" for="acc">Account ID</label>
       <input id="acc" class="input" placeholder="Example: 9876543210" maxlength="10" inputmode="numeric" />
       <div class="hint">digits 10 • LRD currency</div>
       <div class="warn" id="warn">Please enter the correct 10 digit ID</div>
- 
+
       <button class="btn" id="start" disabled>Start</button>
       <div class="progress" id="progress"><div class="bar"></div></div>
 
-      <!-- Блок сигналов -->
+      <!-- Signals -->
       <div id="signalsBox" class="message-box" style="display:none;">
         <div id="signalText">📡 Waiting for signals...</div>
+        <div id="signalValue" class=""></div>
         <div id="minesBoard" class="mines-board" style="display:none;"></div>
       </div>
- 
-      <a class="cta" id="depositLink" href="https://reffpa.com/L?tag=d_4755587m_2804c_&site=4755587&ad=2804&r=registration" target="_blank">💳 Make a deposit</a>
- 
+
+      <a class="cta" id="depositLink" href="#" target="_blank">💳 Make a deposit</a>
+
       <div class="meta">
         <div>🔵 Online: <span id="online">143</span></div>
         <div>⏳ Access ends after <span id="countdown">05:00</span></div>
       </div>
- 
+
       <div class="footer">MADE IN <strong>HackerHouse</strong> • AFRICA</div>
     </div>
   </div>
 
   <script>
     // Countdown
-    let left = 300; 
+    let left = 300;
     const cd = document.getElementById('countdown');
-    setInterval(()=>{ 
-      if(left>0) left--; 
-      const m=Math.floor(left/60).toString().padStart(2,'0'); 
-      const s=(left%60).toString().padStart(2,'0'); 
-      cd.textContent=`${m}:${s}`; 
-    },1000);
- 
-    // Online counter micro-variation
+    setInterval(()=>{ if(left>0) left--; const m=Math.floor(left/60).toString().padStart(2,'0'); const s=(left%60).toString().padStart(2,'0'); cd.textContent=`${m}:${s}`; },1000);
+
+    // Online jitter
     const onlineEl = document.getElementById('online');
-    setInterval(()=>{ 
-      const base = 140; 
-      const jitter = Math.floor(Math.random()*8)-4; 
-      onlineEl.textContent = base + jitter; 
-    }, 2500);
- 
-    // ID validation
+    setInterval(()=>{ const base=140; const jitter=Math.floor(Math.random()*8)-4; onlineEl.textContent = base + jitter; },2500);
+
+    // Elements
     const acc = document.getElementById('acc');
     const start = document.getElementById('start');
     const warn = document.getElementById('warn');
-    acc.addEventListener('input', ()=>{
-      const ok = /^\d{10}$/.test(acc.value);
-      start.disabled = !ok; 
-      warn.style.display = ok? 'none':'block';
-    });
-
-    // --- Логика сигналов ---
     const progress = document.getElementById('progress');
     const signalsBox = document.getElementById('signalsBox');
     const signalText = document.getElementById('signalText');
+    const signalValue = document.getElementById('signalValue');
     const minesBoard = document.getElementById('minesBoard');
 
-    function randomMultiplier() {
-      return (Math.random() * (10 - 0.01) + 0.01).toFixed(2);
-    }
+    // ID validation
+    acc.addEventListener('input', ()=>{
+      // strip non-digits (keeps UX clean)
+      acc.value = acc.value.replace(/\D/g,'').slice(0,10);
+      const ok = /^\d{10}$/.test(acc.value);
+      start.disabled = !ok;
+      warn.style.display = ok ? 'none' : 'block';
+    });
 
-    function generateSignal(game) {
-  const now = new Date().toLocaleTimeString();
+    // utils
+    function randomMultiplier(){ return (Math.random() * (10 - 0.01) + 0.01).toFixed(2); }
 
-  if (game === "Mines") {
-    return `💥 [${now}] ${game}`;
-  }
-
-  if (game === "Penalty") {
-    const directions = ["Top Left", "Top Right", "Center", "Bottom Left", "Bottom Right"];
-    const dir = directions[Math.floor(Math.random() * directions.length)];
-    signalValue.className = "penalty";
-    signalValue.textContent = dir;
-    return `⚽️ [${now}] ${game} → Shot: ${dir}`;
-    
-  }
-
-  // Aviator по умолчанию
-  const multiplier = "x" + randomMultiplier();
-  signalValue.className = "aviator";
-  signalValue.textContent = multiplier;
-  return `🎯 [${now}] ${game} → ${multiplier}`;
-}
-
-
-
-
-
-    function generateMinesBoard() {
+    function generateMinesBoard(){
       minesBoard.innerHTML = '';
       minesBoard.style.display = 'grid';
-
-      const cells = Array.from({length: 25}, (_, i) => i);
+      const indices = Array.from({length:25}, (_,i)=>i);
       const mines = [];
-      while (mines.length < 5) {
-        const idx = Math.floor(Math.random() * cells.length);
-        mines.push(cells.splice(idx, 1)[0]);
+      while(mines.length < 5){
+        const idx = Math.floor(Math.random()*indices.length);
+        mines.push(indices.splice(idx,1)[0]);
       }
-
-      for (let i = 0; i < 25; i++) {
+      for(let i=0;i<25;i++){
         const cell = document.createElement('div');
         cell.className = 'cell';
-        if (mines.includes(i)) {
+        if(mines.includes(i)){
           cell.classList.add('mine');
           cell.textContent = '💣';
         }
@@ -300,30 +165,52 @@
       }
     }
 
-    function startSignals() {
-      const selected = document.querySelector('input[name="game"]:checked');
-      const game = selected ? selected.value : "Crash";
+    function generateSignal(game){
+      const now = new Date().toLocaleTimeString();
+      signalText.textContent = `🎯 [${now}] ${game}`;
 
-      signalsBox.style.display = 'flex';
-      signalText.textContent = generateSignal(game);
-
-      if (game === "Mines") {
+      if(game === 'Mines'){
+        signalValue.className = 'mines';
+        signalValue.textContent = 'Safe moves generated';
         generateMinesBoard();
-      } else {
-        minesBoard.style.display = 'none';
+        return;
       }
+
+      // Penalty: direction
+      if(game === 'Penalty'){
+        const directions = ["Top Left","Top Right","Center","Bottom Left","Bottom Right"];
+        const dir = directions[Math.floor(Math.random()*directions.length)];
+        signalValue.className = 'penalty';
+        signalValue.textContent = dir;
+        minesBoard.style.display = 'none';
+        return;
+      }
+
+      // Aviator or other: multiplier
+      const multiplier = 'x' + randomMultiplier();
+      signalValue.className = 'aviator';
+      signalValue.textContent = multiplier;
+      minesBoard.style.display = 'none';
+    }
+
+    function startSignals(){
+      const selected = document.querySelector('input[name="game"]:checked');
+      const game = selected ? selected.value : 'Aviator';
+      signalsBox.style.display = 'flex';
+      generateSignal(game);
     }
 
     start.addEventListener('click', ()=>{
-      progress.style.display='block';
+      progress.style.display = 'block';
       const bar = progress.querySelector('.bar');
-      bar.style.animation='none'; 
-      bar.offsetHeight; 
-      bar.style.animation='fill 2.4s linear forwards';
+      bar.style.animation = 'none';
+      // force reflow
+      void bar.offsetWidth;
+      bar.style.animation = 'fill 2.4s linear forwards';
       setTimeout(()=>{
-        progress.style.display='none';
+        progress.style.display = 'none';
         startSignals();
-      }, 2400);
+      },2400);
     });
   </script>
 </body>
