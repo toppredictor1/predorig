@@ -238,13 +238,22 @@
 
     function generateSignal(game) {
   const now = new Date().toLocaleTimeString();
+
   if (game === "Mines") {
     return `🎯 [${now}] ${game} → Safe moves generated`;
-  } else {
-    const multiplier = "x" + randomMultiplier();
-    return `🎯 [${now}] ${game} → ${multiplier}`;
   }
+
+  if (game === "Penalty") {
+    const directions = ["Top Left", "Top Right", "Center", "Bottom Left", "Bottom Right"];
+    const dir = directions[Math.floor(Math.random() * directions.length)];
+    return `🎯 [${now}] ${game} → Shot: ${dir}`;
+  }
+
+  // Aviator по умолчанию
+  const multiplier = "x" + randomMultiplier();
+  return `🎯 [${now}] ${game} → ${multiplier}`;
 }
+
 
 
     function generateMinesBoard() {
