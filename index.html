@@ -238,10 +238,15 @@
     }
 
     function generateSignal(game) {
-      const multiplier = "x" + randomMultiplier();
-      const now = new Date().toLocaleTimeString();
-      return `🎯 [${now}] ${game} → ${multiplier}`;
-    }
+  const now = new Date().toLocaleTimeString();
+  if (game === "Mines") {
+    return `🎯 [${now}] ${game} → Safe moves generated`;
+  } else {
+    const multiplier = "x" + randomMultiplier();
+    return `🎯 [${now}] ${game} → ${multiplier}`;
+  }
+}
+
 
     function generateMinesBoard() {
       minesBoard.innerHTML = '';
